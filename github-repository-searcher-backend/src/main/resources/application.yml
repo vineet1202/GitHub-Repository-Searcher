@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: github-repository-searcher
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+
+server:
+  port: ${PORT:8080}
+
+github:
+  api:
+    base-url: https://api.github.com
+    token: ${GITHUB_TOKEN}
+    connect-timeout: 5s
+    read-timeout: 15s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: never
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
