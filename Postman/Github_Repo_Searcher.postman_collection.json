@@ -1,0 +1,326 @@
+{
+  "info": {
+    "_postman_id": "a9e79ac1-5f9a-4150-b56b-d1d9667335f8",
+    "name": "Github_Repo_Searcher",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "24778907"
+  },
+  "item": [
+    {
+      "name": "Search Repositories",
+      "item": [
+        {
+          "name": "Search Repositories",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"query\": \"projects\",\r\n    \"language\": \"Scala\",\r\n    \"sort\": \"stars\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/github/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search Repos with Page&Size",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"query\": \"Health Care\",\r\n    \"language\": \"Java\",\r\n    \"sort\": \"stars\",\r\n    \"page\": 1,\r\n    \"size\": 10\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/github/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Search repositories (different sort)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"query\": \"projects\",\r\n  \"language\": \"Scala\",\r\n  \"sort\": \"forks\",\r\n  \"page\": 1,\r\n  \"size\": 5\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/github/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Get Saved Repos",
+      "item": [
+        {
+          "name": "Get Saved Repositories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/github/repositories",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "repositories"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filter and sort repositories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/github/repositories?language=Java&minStars=100&sort=stars&page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "repositories"
+              ],
+              "query": [
+                {
+                  "key": "language",
+                  "value": "Java"
+                },
+                {
+                  "key": "minStars",
+                  "value": "100"
+                },
+                {
+                  "key": "sort",
+                  "value": "stars"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve repositories with another sort",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/github/repositories?sort=updated&page=0&size=5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "repositories"
+              ],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "updated"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Validation and error handling",
+      "item": [
+        {
+          "name": "Empty search query",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"query\": \"\",\r\n  \"language\": \"Java\",\r\n  \"sort\": \"stars\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/github/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid pagination size",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"query\": \"spring\",\r\n  \"language\": \"Java\",\r\n  \"sort\": \"stars\",\r\n  \"page\": 1,\r\n  \"size\": 150\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/github/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Invalid sort field",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/github/repositories?sort=invalid&page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "repositories"
+              ],
+              "query": [
+                {
+                  "key": "sort",
+                  "value": "invalid"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Repeat the same search",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/github/search",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "github",
+                "search"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}
